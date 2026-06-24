@@ -1,0 +1,6 @@
+{
+  "name": "دفتري الذكي",
+  "description": "تطبيق لإدارة أعمال الصياغة والحسابات اليومية، يشمل إدارة المحلات، العمال، الكشوفات، الديون، الأمانات والخزنة مع ميزات تمويه ذكية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

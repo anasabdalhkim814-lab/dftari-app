@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Core element mapping for full automation */
+:root {
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-header: #ffffff;
+  --border-card: #e2e8f0;
+  --border-input: #cbd5e1;
+  --bg-input: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --bg-secondary: #f1f5f9;
+}
+
+[data-theme="white"] {
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-header: #ffffff;
+  --border-card: #e2e8f0;
+  --border-input: #cbd5e1;
+  --bg-input: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --bg-secondary: #f1f5f9;
+}
+
+[data-theme="black"] {
+  --bg-app: #030303;
+  --bg-card: #0f0f10;
+  --bg-header: #030303;
+  --border-card: #222223;
+  --border-input: #222223;
+  --bg-input: #030303;
+  --text-main: #f4f4f5;
+  --text-muted: #9f9fa2;
+  --bg-secondary: #0f0f10;
+}
+
+[data-theme="gray"] {
+  --bg-app: #0f172a;
+  --bg-card: #1e293b;
+  --bg-header: #090e1a;
+  --border-card: #334155;
+  --border-input: #334155;
+  --bg-input: #0f172a;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --bg-secondary: #1e293b;
+}
+
+[data-theme="brown"] {
+  --bg-app: #20150b;
+  --bg-card: #312112;
+  --bg-header: #20150b;
+  --border-card: #4a3420;
+  --border-input: #4a3420;
+  --bg-input: #20150b;
+  --text-main: #fbf6f0;
+  --text-muted: #cbb299;
+  --bg-secondary: #312112;
+}
+
+/* Page wrapper container */
+[data-theme] {
+  background-color: var(--bg-app) !important;
+  color: var(--text-main) !important;
+}
+
+/* Header and navigation elements */
+[data-theme] header,
+[data-theme] #horizontal-scroll-tabs-bar {
+  background-color: var(--bg-header) !important;
+  border-color: var(--border-card) !important;
+}
+
+[data-theme] #horizontal-scroll-tabs-bar button:not([style*="background-color"]) {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-card) !important;
+  color: var(--text-main) !important;
+}
+
+/* Any section container, cards, modal box, and general sheets */
+[data-theme] .bg-white,
+[data-theme] .bg-slate-50,
+[data-theme] .bg-slate-100,
+[data-theme] .bg-slate-700,
+[data-theme] .bg-slate-800,
+[data-theme] .bg-slate-850,
+[data-theme] .bg-slate-900,
+[data-theme] .bg-zinc-900,
+[data-theme] .bg-zinc-950,
+[data-theme] .bg-slate-950,
+[data-theme] .bg-\[\#4e3828\],
+[data-theme] .bg-\[\#5c4331\],
+[data-theme] .bg-\[\#402e20\] {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-card) !important;
+  color: var(--text-main) !important;
+}
+
+/* Child lists/helper sections */
+[data-theme] .bg-slate-50:not(form):not(div[data-theme]),
+[data-theme] .bg-slate-100/5,
+[data-theme] .bg-slate-200,
+[data-theme] .bg-zinc-100 {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-card) !important;
+}
+
+/* Harmonized Borders */
+[data-theme] .border,
+[data-theme] .border-slate-200,
+[data-theme] .border-slate-300,
+[data-theme] .border-slate-600,
+[data-theme] .border-slate-700,
+[data-theme] .border-slate-800,
+[data-theme] .border-[#27272a],
+[data-theme] .border-zinc-800,
+[data-theme] .border-\[\#5c4331\],
+[data-theme] .border-\[\#785842\] {
+  border-color: var(--border-card) !important;
+}
+
+/* Interactive Inputs, Select dropdowns, textareas */
+[data-theme] input,
+[data-theme] select,
+[data-theme] textarea {
+  background-color: var(--bg-input) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-input) !important;
+}
+
+/* Specific button states under dark backgrounds */
+[data-theme] button:hover:not([style*="background-color"]) {
+  filter: brightness(1.15);
+}
+
+/* Primary text colors dynamic mapping */
+[data-theme] .text-slate-800,
+[data-theme] .text-slate-900,
+[data-theme] .text-slate-202,
+[data-theme] .text-slate-200,
+[data-theme] .text-slate-100,
+[data-theme] .text-zinc-100,
+[data-theme] .text-white,
+[data-theme] .text-slate-950 {
+  color: var(--text-main) !important;
+}
+
+/* Secondary/Muted text colors dynamic mapping */
+[data-theme] .text-slate-500,
+[data-theme] .text-slate-400,
+[data-theme] .text-zinc-400,
+[data-theme] .text-slate-300 {
+  color: var(--text-muted) !important;
+}
+
