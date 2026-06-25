@@ -18,7 +18,7 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      # Java
+      # Java (Capacitor/AGP حديث يحتاج 21)
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -27,14 +27,17 @@ jobs:
       # Android SDK
       - uses: android-actions/setup-android@v3
 
-      # 🔥 أهم خطوة: إعادة إنشاء Android بشكل نظيف
+      # Sync Capacitor
       - run: npx cap sync android
 
-      # 🔥 إعادة بناء Android من الصفر (يولد gradlew تلقائيًا داخل runner)
-      - run: cd android && gradle clean
+      # 🔥 إجبار Gradle 8.5 (حل مشكلة Gradle 9.6)
+      - run: |
+          echo "distributionUrl=https\://services.gradle.org/distributions/gradle-8.5-bin.zip" > android/gradle/wrapper/gradle-wrapper.properties
+
+      # Build APK
       - run: cd android && gradle assembleDebug
 
-      # رفع APK
+      # Upload APK
       - uses: actions/upload-artifact@v4
         with:
           name: apk
