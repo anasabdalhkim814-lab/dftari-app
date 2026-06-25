@@ -12,7 +12,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
 
       - run: npm install
       - run: npm run build
@@ -25,7 +25,9 @@ jobs:
       - uses: android-actions/setup-android@v3
 
       - run: npx cap sync android
-      - run: cd android && ./gradlew assembleDebug
+
+      # مهم: لا نستخدم gradlew
+      - run: cd android && gradle assembleDebug
 
       - uses: actions/upload-artifact@v4
         with:
