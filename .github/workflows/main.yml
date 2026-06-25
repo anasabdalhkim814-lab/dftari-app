@@ -10,25 +10,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node 22 (ضروري لـ Capacitor)
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - run: npm install
       - run: npm run build
 
+      # إعداد Java
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
+      # إعداد Android SDK
       - uses: android-actions/setup-android@v3
 
+      # مزامنة Capacitor
       - run: npx cap sync android
 
-      # مهم: لا نستخدم gradlew
+      # بناء APK
       - run: cd android && gradle assembleDebug
 
+      # رفع الملف الناتج
       - uses: actions/upload-artifact@v4
         with:
           name: apk
