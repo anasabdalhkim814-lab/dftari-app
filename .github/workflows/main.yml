@@ -1,4 +1,4 @@
-name: Build APK
+name: Build APK (Production)
 
 on:
   workflow_dispatch:
@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node (Capacitor يحتاج 22)
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -17,23 +18,23 @@ jobs:
       - run: npm install
       - run: npm run build
 
+      # Java
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
+      # Android SDK
       - uses: android-actions/setup-android@v3
 
+      # 🔥 أهم خطوة: إعادة إنشاء Android بشكل نظيف
       - run: npx cap sync android
 
-      - name: Setup Gradle 8.5
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: 8.5
+      # 🔥 إعادة بناء Android من الصفر (يولد gradlew تلقائيًا داخل runner)
+      - run: cd android && gradle clean
+      - run: cd android && gradle assembleDebug
 
-      - run: cd android && chmod +x gradlew
-      - run: cd android && ./gradlew assembleDebug
-
+      # رفع APK
       - uses: actions/upload-artifact@v4
         with:
           name: apk
