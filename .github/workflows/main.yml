@@ -18,23 +18,29 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      # إعداد Java
+      # Java للأندرويد
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
-      # إعداد Android SDK
+      # Android SDK
       - uses: android-actions/setup-android@v3
 
       # مزامنة Capacitor
       - run: npx cap sync android
-      - run: cd android && gradle assembleDebug --stacktrace
 
-      # بناء APK
-      - run: cd android && gradle assembleDebug
+      # إجبار Gradle إصدار 8.5 (الحل الأساسي للمشكلة)
+      - name: Setup Gradle 8.5
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: 8.5
 
-      # رفع الملف الناتج
+      # بناء APK باستخدام gradlew
+      - run: cd android && chmod +x gradlew
+      - run: cd android && ./gradlew assembleDebug
+
+      # رفع ملف APK
       - uses: actions/upload-artifact@v4
         with:
           name: apk
