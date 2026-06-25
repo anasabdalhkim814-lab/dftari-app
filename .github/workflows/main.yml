@@ -29,6 +29,7 @@ jobs:
 
       # مزامنة Capacitor
       - run: npx cap sync android
+      - run: cd android && gradle assembleDebug --stacktrace
 
       # بناء APK
       - run: cd android && gradle assembleDebug
